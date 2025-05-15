@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();  // Mã môn học
-            $table->string('name');  // Tên môn học
+            $table->string('code')->unique(); 
+            $table->string('name');  
             $table->timestamps();
         });
     }
