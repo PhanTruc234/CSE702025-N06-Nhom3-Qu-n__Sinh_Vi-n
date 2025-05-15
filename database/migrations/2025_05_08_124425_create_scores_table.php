@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade'); // Liên kết với bảng students
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade'); // Liên kết với bảng subjects
-            $table->decimal('score', 5, 2); // Điểm, ví dụ: 9.50
+            $table->foreignId('student_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->decimal('score', 5, 2); 
             $table->timestamps();
         });
     }
