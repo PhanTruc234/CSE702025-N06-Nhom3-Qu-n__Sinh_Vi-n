@@ -9,35 +9,46 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     public function index(Request $request)
-    {
-        $search = $request->query('search');
-        $sort = $request->query('sort', 'name');
-        $students = Student::query()
-            ->leftJoin('scores', 'students.id', '=', 'scores.student_id')
-            ->groupBy('students.id', 'students.code', 'students.name', 'students.email', 'students.gender', 'students.dob', 'students.created_at', 'students.updated_at')
-            ->select(
-                'students.*',
-                DB::raw('AVG(scores.score) as average_score')
-            )
-            ->when($search, function ($query, $search) {
-                return $query->where('students.name', 'like', "%{$search}%");
-            });
-        if ($sort === 'name_desc') {
-            $students = $students->orderBy('students.name', 'desc');
-        } elseif ($sort === 'average_score_desc') {
-            $students = $students->orderBy('average_score', 'desc');
-        } else {
-            $students = $students->orderBy('students.name', 'asc');  // Mặc định sắp xếp theo tên A-Z
-        }
+{
+    $search = $request->query('search');
+    $sort = $request->query('sort', 'name');
 
-        $students = $students->paginate(10);
+    $students = Student::query()
+        ->leftJoin('scores', 'students.id', '=', 'scores.student_id')
+        ->leftJoin('subjects', 'scores.subject_id', '=', 'subjects.id') // <-- thêm dòng này
+        ->groupBy(
+            'students.id', 'students.code', 'students.name', 'students.email',
+            'students.gender', 'students.dob', 'students.created_at', 'students.updated_at'
+        )
+        ->select(
+            'students.*',
+            DB::raw('
+                ROUND(
+                    COALESCE(SUM(scores.score * subjects.credit), 0) / NULLIF(SUM(subjects.credit), 0),
+                    2
+                ) AS average_score
+            ')
+        )
+        ->when($search, function ($query, $search) {
+            return $query->where('students.name', 'like', "%{$search}%");
+        });
 
-        return view('students.index', [
-            'students' => $students,
-            'sort' => $sort,
-            'search' => $search
-        ]);
+    if ($sort === 'name_desc') {
+        $students = $students->orderBy('students.name', 'desc');
+    } elseif ($sort === 'average_score_desc') {
+        $students = $students->orderBy('average_score', 'desc');
+    } else {
+        $students = $students->orderBy('students.name', 'asc');
     }
+
+    $students = $students->paginate(10);
+
+    return view('students.index', [
+        'students' => $students,
+        'sort' => $sort,
+        'search' => $search
+    ]);
+}
     public function create()
     {
         return view('students.create');
