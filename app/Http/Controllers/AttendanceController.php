@@ -11,9 +11,7 @@ class AttendanceController extends Controller
 {
     public function index(Request $request, Student $student)
     {
-
         $filter = $request->query('filter', '');
-
         $attendances = Attendance::where('student_id', $student->id)
             ->with('subject')
             ->when($filter === 'fail', function ($query) {
@@ -28,12 +26,12 @@ class AttendanceController extends Controller
     }
     public function create(Student $student)
     {
-
         $subjects = Subject::whereNotIn('id', function ($query) use ($student) {
             $query->select('subject_id')
                 ->from('attendances')
                 ->where('student_id', $student->id);
         })->get();
+        // lọc nhưnng môn mà học sinh chưa điểm danhdanh
 
         return view('attendances.create', compact('student', 'subjects'));
     }
