@@ -64,6 +64,7 @@ Cấu trúc rõ ràng, tách biệt các chức năng theo mô hình MVC của L
 | student_id      | FOREIGN (BIGINT)| FK đến `students`                             |
 | subject_id      | FOREIGN (BIGINT)| FK đến `subjects`                             |
 | absent_sessions | INTEGER         | Số buổi vắng học của sinh viên trong môn đó   |
+### Mô hình ERD : ![Screenshot 2025-06-03 115734](https://github.com/user-attachments/assets/51b2c883-7f68-440c-ba58-24b8061bcbc2)
 
 ### API Endpoints
 Tất cả các API trả về JSON.
