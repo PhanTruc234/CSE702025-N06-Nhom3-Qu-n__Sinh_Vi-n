@@ -1,42 +1,42 @@
-# 🛍️ Website Bán Hàng Online - ReactJS
+# Website Bán Hàng Online - ReactJS
 
-## 📌 Giới thiệu
+## Giới thiệu
 Đây là dự án xây dựng **Website Bán Hàng Online** sử dụng **ReactJS (Vite)** nhằm cung cấp trải nghiệm mua sắm hiện đại, dễ sử dụng, phù hợp với người dùng phổ thông. Trang web bao gồm các chức năng như: xem sản phẩm, tìm kiếm, thêm vào giỏ hàng, thanh toán và theo dõi đơn hàng.
 
 ---
 
-## 🚀 Công nghệ sử dụng
-- ⚛️ [ReactJS](https://reactjs.org/)
-- ⚡ [Vite](https://vitejs.dev/)
-- 💨 [Tailwind CSS](https://tailwindcss.com/)
-- 🔁 React Router DOM
-## 🧩 Các tính năng chính
-- 🏠 Trang chủ giới thiệu sản phẩm
-- 🔍 Tìm kiếm sản phẩm theo từ khóa
-- 🛒 Thêm/xoá sản phẩm vào giỏ hàng
-- 💳 Trang thanh toán đơn giản
-- 👤 Đăng ký / Đăng nhập người dùng
-- 📦 Xem chi tiết sản phẩm
-- 🚚 Theo dõi tình trạng đơn hàng
+## Công nghệ sử dụng
+- [ReactJS](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- React Router DOM
+## Các tính năng chính
+- Trang chủ giới thiệu sản phẩm
+- Tìm kiếm sản phẩm theo từ khóa
+- Thêm/xoá sản phẩm vào giỏ hàng
+- Trang thanh toán đơn giản
+- Đăng ký / Đăng nhập người dùng
+- Xem chi tiết sản phẩm
+- Theo dõi tình trạng đơn hàng
 
 ---
 
-## 🧠 Mục tiêu học tập
+## Mục tiêu học tập
 
-### 🔧 Về công nghệ:
+### Về công nghệ:
 - Làm quen với ReactJS, tổ chức component
 - Sử dụng Tailwind để tạo giao diện nhanh, hiện đại
 - Điều hướng trong SPA với React Router
 - Quản lý trạng thái đơn giản
 
-### 👨‍💻 Về kỹ thuật:
+### Về kỹ thuật:
 - Tổ chức thư mục rõ ràng, dễ mở rộng
 - Sử dụng props và state đúng cách
 - Tối ưu tái sử dụng component
 
 ---
 
-## 🌱 Cách cài đặt và chạy dự án
+## Cách cài đặt và chạy dự án
 
 ```bash
 # Bước 1: Clone về máy
