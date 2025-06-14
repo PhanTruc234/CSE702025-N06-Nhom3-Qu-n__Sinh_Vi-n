@@ -21,9 +21,10 @@ import {
 import SaveIcon from "@mui/icons-material/Save";
 import { Link } from "react-router-dom";
 import { product } from "../../../services/product";
+import { setProduct } from "../../../store/features/productSlice";
 export const Product = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.productClientSlice.products);
+  const data = useSelector((state) => state.productSlice.produc);
   const totalPage = data.length;
   const [formSearch, setFormSearch] = useState({
     category: "",
@@ -49,7 +50,7 @@ export const Product = () => {
         const res = await product.renderProductByCate(formSearch);
         console.log(res.data, "resssssssssssssss");
         if (res.status === 200) {
-          dispatch(setProducts(res.data));
+          dispatch(setProduct(res.data));
         }
       } catch (error) {
         console.log(error);
