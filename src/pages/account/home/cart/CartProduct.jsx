@@ -43,7 +43,6 @@ export const CartProduct = () => {
   }, []);
 
   useEffect(() => {
-    // Tự động cập nhật trạng thái checkbox All
     setIsAllChecked(
       checkItems.length === dataCart.length && dataCart.length > 0
     );
