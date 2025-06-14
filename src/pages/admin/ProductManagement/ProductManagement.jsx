@@ -32,6 +32,7 @@ export const ProductManagement = () => {
   });
   const dispatch = useDispatch();
   const dataProduct = useSelector((state) => state.productSlice.produc);
+  console.log(dataProduct);
   const itemsPerPage = 4;
   const [page, setPage] = useState(1);
   const handlePage = (e, value) => {
@@ -66,33 +67,23 @@ export const ProductManagement = () => {
     setPage(1);
   };
   useEffect(() => {
-    const fetchDataProduct = async () => {
+    const fetchData = async () => {
       try {
-        const res = await product.renderProductByName(form);
-        console.log(res.data, "resssssssssssssss");
-        if (res.status === 200) {
+        let res;
+        if (form.name.trim()) {
+          res = await product.renderProductByName(form);
+        } else {
+          res = await product.renderProductPage(page, itemsPerPage);
+        }
+        if (res?.status === 200) {
           dispatch(setProduct(res.data));
         }
       } catch (error) {
         console.log(error);
       }
     };
-    fetchDataProduct();
-  }, [form]);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await product.renderProductPage(page, itemsPerPage);
-        console.log(res.data);
-        if (res.status === 200) {
-          dispatch(setProduct(res.data));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchProducts();
-  }, [page]);
+    fetchData();
+  }, [form, page]);
   return (
     <div>
       <TableContainer>
