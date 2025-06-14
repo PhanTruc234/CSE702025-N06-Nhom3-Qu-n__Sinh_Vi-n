@@ -26,7 +26,6 @@ import {
 } from "../../../store/features/productSlice";
 import { product } from "../../../services/product";
 import { useProductText } from "../../account/home/ProductContext";
-import { setProducts } from "../../../store/features/productClientSlice";
 export const ProductManagement = () => {
   const [form, setForm] = useState({
     name: "",
