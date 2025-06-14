@@ -1,10 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import productClient from "../../../services/productClient";
-// import banner from "https://sonpm283.github.io/tailwindcss-ecom/images/img_product_list_banner.webp";
-import {
-  setCategoryList,
-  setProducts,
-} from "../../../store/features/productClientSlice";
 import { useEffect, useState } from "react";
 import { formatBigNumber } from "../../../utils/format-big-number";
 import {
