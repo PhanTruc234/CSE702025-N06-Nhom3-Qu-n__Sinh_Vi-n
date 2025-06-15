@@ -36,7 +36,11 @@ export const Payment = () => {
               <tr key={item.id} className="border-b hover:bg-gray-50">
                 <td className="p-4">
                   <img
-                    src={item.images[0]?.name}
+                    src={
+                      typeof item.images[0] === "string"
+                        ? item.images[0]
+                        : item.images[0]?.name
+                    }
                     alt={item.name}
                     className="w-[80px] h-[80px] object-cover rounded-md border"
                   />
@@ -50,7 +54,9 @@ export const Payment = () => {
             ))}
         </tbody>
       </table>
-      {dataPayment || <p className="text-center">Không có dữ liệu</p>}
+      {(!dataPayment || dataPayment.length === 0) && (
+        <p className="text-center">Không có dữ liệu</p>
+      )}
       {dataPayment && (
         <div className="mt-[20px] text-[20px] mb-2">
           Đã thanh toán :{totalPrice ? formatBigNumber(totalPrice, true) : "0đ"}
