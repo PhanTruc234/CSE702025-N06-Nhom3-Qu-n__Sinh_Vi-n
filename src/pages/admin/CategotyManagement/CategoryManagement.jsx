@@ -66,6 +66,7 @@ export const CategoryManagement = () => {
       if (res.status === 200) {
         console.log(res.data, "uouo");
         dispatch(removeCategory(res.data));
+        toast.success("Xóa sản phẩm thành công");
       }
     } catch (error) {
       console.log(error);
