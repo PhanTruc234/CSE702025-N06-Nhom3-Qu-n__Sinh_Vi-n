@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { doLogin } from "../../store/features/authenSlice";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { toast } from "react-toastify";
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,9 +28,11 @@ export const Login = () => {
       if (res.status === 200) {
         dispatch(doLogin(res.data[0]));
         navigate("/");
+        toast.success("Đăng nhập thành công");
         console.log(res.data[0], "bgk");
       }
     } catch (error) {
+      toast.error("Đăng nhập thất bại");
       console.log(error);
     }
     setFormLogin({
