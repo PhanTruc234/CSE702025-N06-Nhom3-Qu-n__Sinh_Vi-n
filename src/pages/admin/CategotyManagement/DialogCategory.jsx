@@ -15,6 +15,7 @@ import {
   addCategory,
   editCategory,
 } from "../../../store/features/categorySlice";
+import { toast } from "react-toastify";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -53,6 +54,7 @@ export default function DialogCategory({ open, onClose, edit }) {
       console.log(res.data, "edit");
       if (res.status === 200) {
         dispatch(editCategory(res.data));
+        toast.success("Sửa thành công");
         onClose();
       }
     } else {
@@ -60,6 +62,7 @@ export default function DialogCategory({ open, onClose, edit }) {
       console.log(res, "categoryresss");
       if (res.status === 201) {
         dispatch(addCategory(res.data));
+        toast.success("Thêm thành công");
         onClose();
       }
     }
