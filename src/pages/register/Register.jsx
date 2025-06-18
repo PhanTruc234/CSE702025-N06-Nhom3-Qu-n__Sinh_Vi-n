@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { toast } from "react-toastify";
 export const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,15 +40,16 @@ export const Register = () => {
           user.name === formRegister.name && user.email === formRegister.email
       );
       if (exists) {
-        alert("Người dùng đã tồn tại");
+        toast.warn("Người dùng đã tồn tại");
         return;
       }
       const postRes = await auth.authRegister(formRegister);
       if (postRes.status === 201) {
-        alert("Thành Công");
+        toast.success("Đăng kí thành công");
         navigate("/login");
       }
     } catch (error) {
+      toast.error("Tài khoản đã tồn tại");
       console.log(error);
     }
   };
