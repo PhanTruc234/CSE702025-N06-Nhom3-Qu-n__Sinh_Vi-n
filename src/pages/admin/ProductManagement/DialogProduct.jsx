@@ -10,6 +10,7 @@ import {
 } from "../../../store/features/productSlice";
 import { useNavigate } from "react-router-dom";
 import SaveIcon from "@mui/icons-material/Save";
+import { toast } from "react-toastify";
 export const DialogProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -161,6 +162,7 @@ export const DialogProduct = () => {
         });
         if (res.status === 200) {
           dispatch(editProductNew(res.data));
+          toast.success("Sửa thành công");
         }
       } else {
         res = await product.fetchProduct({
@@ -169,6 +171,7 @@ export const DialogProduct = () => {
         });
         if (res.status === 201) {
           dispatch(addProduct(res.data));
+          toast("Thêm thành công");
         }
       }
       dispatch(setEditProduct(null));
