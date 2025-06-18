@@ -19,7 +19,7 @@ export const Payment = () => {
   return (
     <div className="container mt-[100px] mb-[100px]">
       <h2 className="text-center text-[30px] mb-4">
-        Chi tiết sản phẩm thanh toán
+        Chi tiết sản phẩm đang được giao
       </h2>
       <table className="w-full table-auto border border-gray-200">
         <thead className="bg-gray-100">
@@ -59,7 +59,7 @@ export const Payment = () => {
       )}
       {dataPayment && (
         <div className="mt-[20px] text-[20px] mb-2">
-          Đã thanh toán :{totalPrice ? formatBigNumber(totalPrice, true) : "0đ"}
+          Tổng :{totalPrice ? formatBigNumber(totalPrice, true) : "0đ"}
         </div>
       )}
       <div className="text-[20px]">
