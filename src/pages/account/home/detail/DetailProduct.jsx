@@ -20,6 +20,7 @@ import { formatBigNumber } from "../../../../utils/format-big-number";
 import cart from "../../../../services/cart";
 import { addCart, increment } from "../../../../store/features/cartSlice";
 import SendIcon from "@mui/icons-material/Send";
+import { toast } from "react-toastify";
 
 export const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -30,14 +31,11 @@ export const DetailProduct = () => {
   const data = useSelector((state) => state.productSlice.produc);
   const detailProduct = data.find((p) => slugify(p.name) === slugify(name));
   const [selectedImg, setSelectedImg] = useState("");
-  const [heart, setHeart] = useState(false);
   const dataCart = useSelector((state) => state.cartSlice.cart);
   const [count, setCount] = useState(1);
-
   const handleChangeImg = (url) => {
     setSelectedImg(url);
   };
-
   const handleDecrement = () => {
     setCount(count > 1 ? count - 1 : 1);
   };
@@ -71,17 +69,16 @@ export const DetailProduct = () => {
         createdAt: new Date().toISOString(),
       });
     }
+    toast.success(`Thêm ${item.name} vào giỏ hàng thành công`);
   };
-
   useEffect(() => {
     if (!cartValue) return;
-
     const fetchCart = async () => {
       try {
         const res = await cart.fetchCart(cartValue);
         console.log("API trả về:", res.data);
         if (res.status === 201) {
-          dispatch(addCart({ ...cartValue, id: String(cartValue.id) }));
+          dispatch(addCart({ ...cartValue }));
         }
       } catch (error) {
         console.error("Lỗi thêm giỏ hàng:", error);
@@ -93,9 +90,6 @@ export const DetailProduct = () => {
 
     fetchCart();
   }, [cartValue, dispatch]);
-  const handleHeart = () => {
-    setHeart(!heart);
-  };
   return detailProduct ? (
     <div className="container">
       <ul className="flex gap-2 items-center py-4">
@@ -242,7 +236,6 @@ export const DetailProduct = () => {
               <button
                 type="button"
                 className="p-4 bg-white border border-[#e6e6e6] rounded-full"
-                onClick={handleHeart}
               >
                 <FavoriteBorderIcon />
               </button>
