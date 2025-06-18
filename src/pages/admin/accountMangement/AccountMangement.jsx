@@ -18,6 +18,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import { styled } from "@mui/material/styles";
 import auth from "../../../services/auth";
 import { Login } from "@mui/icons-material";
+import { toast } from "react-toastify";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -59,7 +60,7 @@ export const AccountMangement = () => {
     try {
       const res = await auth.authRegister(k);
       if (res.status === 201) {
-        alert(`Tạo thành công:\nEmail: ${email}\nMật khẩu: ${password}`);
+        toast.success(`Tạo thành công:\nEmail: ${email}\nMật khẩu: ${password}`)
         setUsername("");
         fetchUsers();
         setOpen(false);
@@ -75,8 +76,8 @@ export const AccountMangement = () => {
     try {
       const res = await auth.removeUser(id);
       if (res.status === 200) {
-        alert("Xóa thành công");
         fetchUsers();
+        toast.success("Xóa tài khoản thành công");
       }
     } catch (error) {
       console.log(error);
