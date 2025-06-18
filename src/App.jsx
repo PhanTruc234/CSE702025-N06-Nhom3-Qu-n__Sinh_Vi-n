@@ -27,6 +27,8 @@ import { Payment } from "./pages/account/home/cart/Payment";
 import { About } from "./pages/account/about/About";
 import { FormInfomation } from "./pages/account/info/FormInfomation";
 import { AccountMangement } from "./pages/admin/accountMangement/AccountMangement";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const dispatch = useDispatch();
   const { setProductLength } = useProductText();
@@ -95,6 +97,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <ToastContainer />
     </>
   );
 }
