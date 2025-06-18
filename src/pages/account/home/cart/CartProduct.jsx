@@ -16,6 +16,7 @@ import payment from "../../../../services/payment";
 import { setPayment } from "../../../../store/features/paymentSlice";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const CartProduct = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ export const CartProduct = () => {
   }, []);
 
   useEffect(() => {
+    // Tự động cập nhật trạng thái checkbox All
     setIsAllChecked(
       checkItems.length === dataCart.length && dataCart.length > 0
     );
@@ -77,6 +79,7 @@ export const CartProduct = () => {
       const res = await cart.removeCart(item.id);
       if (res.status === 200) {
         dispatch(deleteCart(item.id));
+        toast.success(`Xóa sản phẩm ${item.name} thành công`);
       }
     } catch (error) {
       console.log(error);
@@ -113,7 +116,7 @@ export const CartProduct = () => {
     if (infomation) {
       localStorage.setItem("pay", JSON.stringify(checkItems));
       setTimeout(async () => {
-        alert("Thanh toán thành công");
+        toast.success("Mua thành công");
         navigate("/checkout");
         for (const i of checkItems) {
           try {
@@ -126,6 +129,7 @@ export const CartProduct = () => {
         }
       }, 2000);
     } else {
+      alert("Bạn chưa nhập thông tin địa chỉ");
       navigate("/infomation");
     }
   };
