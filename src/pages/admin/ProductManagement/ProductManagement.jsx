@@ -26,6 +26,7 @@ import {
 } from "../../../store/features/productSlice";
 import { product } from "../../../services/product";
 import { useProductText } from "../../account/home/ProductContext";
+import { toast } from "react-toastify";
 export const ProductManagement = () => {
   const [form, setForm] = useState({
     name: "",
@@ -50,6 +51,7 @@ export const ProductManagement = () => {
     const res = await product.deleteProduct(item);
     if (res.status === 200) {
       dispatch(removeProduct(res.data));
+      toast.success(`Xóa sản phẩm ${item.name} thành công`);
     }
   };
   const handleChangeText = (e) => {
