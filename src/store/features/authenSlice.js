@@ -13,6 +13,7 @@ const authenSlice = createSlice({
       state.info = null;
       localStorage.removeItem("user");
       localStorage.removeItem("info");
+      localStorage.removeItem("pay");
     },
   },
 });
