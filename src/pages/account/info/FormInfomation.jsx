@@ -7,6 +7,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 export const FormInfomation = () => {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ export const FormInfomation = () => {
     e.preventDefault();
     setEdit(false);
     console.log("Dữ liệu đã gửi:", formData);
-    alert("Gửi thông tin thành công!");
+    toast.success("Gửi thông tin thành công!");
     localStorage.setItem("info", JSON.stringify(formData));
   };
 
